@@ -1,0 +1,46 @@
+---
+title: "data "
+output: 
+  github_document:
+    toc: true
+    toc_depth: 2
+---
+
+
+```{bash}
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300650/P150_30m_R1fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300651/P150_100m_R1.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300652/P600_25m_R1.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300653/P600_75m_R1.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300654/P600_150m_R1.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300655/P600_400m_R1.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300656/P600_580m_R1.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300657/P850_150m_R1.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300658/P850_500m_R1.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300659/P850_700m_R1.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300660/P850_800m_R1.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300661/P1000_20m_R1.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300662/P1000_80m_R1.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300663/P1000_100m_R1.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300664/P1000_200m_R1.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300665/P1000_900m_R1.fastq.gz
+
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300650/P150_30m_R2.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300651/P150_100m_R2.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300652/P600_25m_R2.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300653/P600_75m_R2.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300654/P600_150m_R2.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300655/P600_400m_R2.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300656/P600_580m_R2.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300657/P850_150m_R2.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300658/P850_500m_R2.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300659/P850_700m_R2.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300660/P850_800m_R2.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300661/P1000_20m_R2.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300662/P1000_80m_R2.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300663/P1000_100m_R2.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300664/P1000_200m_R2.fastq.gz
+wget ftp.sra.ebi.ac.uk/vol1/run/ERR230/ERR2300665/P1000_900m_R2.fastq.gz
+```
+
+
