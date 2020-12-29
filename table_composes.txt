@@ -1,0 +1,12 @@
+Items				LY	HY	
+pH				6.73	6.71		
+NH3-N, mg/dL			7.99	13.28
+Proportion
+Acetate				62.38	60.72	
+Propionate			21.95	23.14	
+Isobutyrate			0.83	0.74			
+Butyrate			12.06	12.55	
+Isovalerate			1.21	1.31	
+Valerate			1.58	1.55	
+Acetate:propionate ratio	2.85	2.64
+Total VFA (mmol/L) 		99.76 113.63
