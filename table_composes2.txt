@@ -1,7 +1,6 @@
 Items LY HY		
-NH3-N 7.99 13.28
-Proportion
-Acetate 62.38 60.72	
-Propionate 21.95 23.14	
-Acetate:propionate ratio 2.85 2.64
-Total VFA 99.76 113.63
+NH3-N,7.99,13.28
+Acetate,62.38,60.72	
+Propionate,21.95,23.14	
+Acetate_propionate_ratio,2.85,2.64
+Total_VFA,99.76,113.63
