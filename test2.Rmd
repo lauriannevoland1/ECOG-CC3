@@ -1,0 +1,120 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+tableabundance <-read.table(file="tableabundance.txt",header=TRUE)
+```
+
+```{r}
+rf <- structure(list(Sample = structure(1:2, .Label = c("HY", "LY"), class = "factor"), 
+                     bacteroidetes= c(49.1,65.61),
+                     firmicutes	= c(44.33,27.71),
+                     proteobacteria	= c(0.93,2.09),	
+                     tenericutes= c(1.32,1.57),	
+                     saccharibacteria	= c(1.07,0.79),
+                     Prevotella_1= c(29.14,37.48),	
+                     Ruminococcaceae_NK4A214_group = c(7.20, 4.12),	
+                     Succiniclasticum	= c(7.69,3.57),	
+                     Prevotellaceae	= c(4.21,5.96),	
+                     Prevotella_7	= c(0.47,8.41),	
+                     Bacteroidales_S24_7_group = c(3.55,3.44),
+                     Ruminococcus = c(4.41,1.36),	
+                     Bacteroidales_BS11 = c(3.36,2.21),	
+                     Rikenellaceae_RC9_gut_group = c(2.67,2.87),	
+                     Christensenellaceae_R_7_group = c(3.12,2.00),	
+                     Prevotellaceae_UCG_003 = c(2.00,2.20),	
+                     Lachnospiraceae_NK3A20_group	= c(2.91,1.18),	
+                     Ruminococcaceae_UCG_014 = c(1.87,1.99),	
+                     Prevotellaceae_UCG_001	= c(1.36,1.55),
+                     Eubacterium_coprostanoligenes_group= c(1.93,0.80)),.Names = c("Rendement", " bacteroidetes", "firmicutes", "proteobacteria", "tenericutess", "saccharibacteria","Prevotella_18","Ruminococcaceae-NK4A214-group","Succiniclasticum", "Succiniclasticum", "Prevotellaceae","Bacteroidales_S24_7_group","Ruminococcus","Bacteroidales_BS11","Rikenellaceae_RC9_gut_group","Christensenellaceae_R_7_group","Prevotellaceae_UCG_003","achnospiraceae-NK3A20-group","PRuminococcaceae_UCG_014","Prevotellaceae_UCG_001","Eubacterium_coprostanoligenes_group"), class = "data.frame", row.names = c("1", "2"))
+```
+
+```{r}
+qf <- structure(list(Sample = structure(1:20, .Label = c(" bacteroidetes", "firmicutes", "proteobacteria", "tenericutess","saccharibacteria","Prevotella_18","Ruminococcaceae-NK4A214-group","Succiniclasticum", "Succiniclasticum","Prevotellaceae","Bacteroidales_S24_7_group","Ruminococcus","Bacteroidales_BS11","Rikenellaceae_RC9_gut_group","Christensenellaceae_R_7_group","Prevotellaceae_UCG_003","achnospiraceae-NK3A20-group","PRuminococcaceae_UCG_014","Prevotellaceae_UCG_001","Eubacterium_coprostanoligenes_group"), class = "factor"), 
+                     HY = c(49.1,44.33,0.93,1.32,1.07,29.14,7.20,7.69,4.21,0.47,3.55,4.41,3.36,2.67,3.12,2.00,2.91,1.87,1.36,1.93),
+                     LY = c(65.61,27.71,2.09,1.57,0.79,37.48,4.12,3.57,5.96,8.41,3.44,1.36,2.21,2.87,2.00,2.20,1.18,1.99,1.55,0.80)),.Names = c("Phyla","HY", "LY" ), class = "data.frame", row.names = c("1", "2", "3","4", "5", "6","7", "8", "9","10", "11", "12","13","14","15","16","17","18","19","20"))
+```
+
+```{r}
+library(reshape2)
+rf_long <- melt(rf, id.vars = "Rendement", variable.name = "Phyla")
+```
+
+```{r}
+ggplot(rf_long, aes(x = Rendement, y = value, fill = Phyla)) + 
+    geom_bar(stat = "identity")
+```
+
+
+#PHYLA
+```{r}
+of <- structure(list(Sample = structure(1:2, .Label = c("HY", "LY"), class = "factor"), 
+                     bacteroidetes= c(49.1,65.61),
+                     firmicutes	= c(44.33,27.71),
+                     proteobacteria	= c(0.93,2.09),	
+                     tenericutes= c(1.32,1.57),	
+                     saccharibacteria	= c(1.07,0.79)),.Names = c("Rendement", " bacteroidetes", "firmicutes", "proteobacteria", "tenericutess", "saccharibacteria"), class = "data.frame", row.names = c("1", "2", "3","4", "5", "6"))
+```
+
+
+```{r}
+library(reshape2)
+of_long <- melt(of, id.vars = "Rendement", variable.name = "Phyla")
+```
+
+```{r}
+ggplot(of_long, aes(x = Rendement, y = value, fill = Phyla)) + 
+    geom_bar(stat = "identity")
+```
+#GENUS 
+
+```{r}
+gf <- structure(list(Sample = structure(1:2, .Label = c("HY", "LY"), class = "factor"), 
+                     Prevotella_1= c(29.14,37.48),	
+                     Ruminococcaceae_NK4A214_group = c(7.20, 4.12),	
+                     Succiniclasticum	= c(7.69,3.57),	
+                     Prevotellaceae	= c(4.21,5.96),	
+                     Prevotella_7	= c(0.47,8.41),	
+                     Bacteroidales_S24_7_group = c(3.55,3.44),
+                     Ruminococcus = c(4.41,1.36),	
+                     Bacteroidales_BS11 = c(3.36,2.21),	
+                     Rikenellaceae_RC9_gut_group = c(2.67,2.87),	
+                     Christensenellaceae_R_7_group = c(3.12,2.00),	
+                     Prevotellaceae_UCG_003 = c(2.00,2.20),	
+                     Lachnospiraceae_NK3A20_group	= c(2.91,1.18),	
+                     Ruminococcaceae_UCG_014 = c(1.87,1.99),	
+                     Prevotellaceae_UCG_001	= c(1.36,1.55),
+                     Eubacterium_coprostanoligenes_group= c(1.93,0.80)),.Names = c("Rendement", "Prevotella_1","Ruminococcaceae-NK4A214-group","Succiniclasticum", "Succiniclasticum", "Prevotellaceae","Bacteroidales_S24_7_group","Ruminococcus","Bacteroidales_BS11","Rikenellaceae_RC9_gut_group","Christensenellaceae_R_7_group","Prevotellaceae_UCG_003","achnospiraceae-NK3A20-group","PRuminococcaceae_UCG_014","Prevotellaceae_UCG_001","Eubacterium_coprostanoligenes_group"), class = "data.frame", row.names = c("1", "2", "3","4", "5", "6","7", "8", "9","10", "11", "12","13","14","15"))
+```
+
+
+
+```{r}
+p<-ggplot(data=qf_long, aes(x=Rendement, y=Phyla)) +
+  geom_bar(stat="identity")
+p
+```
+
+
+
+
+```{r}
+ggplot(qf_long, aes(Rendement, Phyla, fill=col))+
+geom_bar(stat="identity", position="dodge", width=0.5,size=5)
+```
+
+```{r}
+ggplot(qf_long, aes(x=Rendement, y=Phyla)) +
+    geom_point(aes(colour=cut), alpha=1)
+```
+
+
+
+
+```{r}
+ggplot(data=qf, aes(x=Rendement, y=HY)) +
+  geom_bar(stat="identity")
+```
+

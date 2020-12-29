@@ -1,0 +1,237 @@
+---
+title: "cow"
+output: html_notebook
+---
+
+
+# DATA FRAME pour les produit chimique 
+```{r}
+HY	= c(13.28,60.72,23.14,113.63,2.64) ; LY	= c(7.99,62.38,21.95,99.76,2.85)
+tableau <- data.frame(x = HY, y = LY) 
+# Renommer les colonnes
+# en reprenant l'exemple ci-dessus
+colnames(tableau) <- c("HY","LY")
+# Si le tableau s'appelle data, on peut renommer ses colonnes
+data <- colnames(c("nouveau titre","titre nouveau"))
+
+# en reprenant l'exemple ci-dessus
+rownames(tableau) <- c("NH3-N", "Acetate", "Propionate","Total VFA", "Acetate:propionate ratio")
+```
+
+```{r}
+head(tableau)
+```
+
+```{r}
+cor(tableau, method = "spearman")
+```
+
+
+```{r}
+# The mtcars dataset:
+cormat <- round(cor(tableau),4)
+head(cormat)
+```
+
+```{r}
+library(reshape2)
+melted_cormat <- melt(cormat)
+head(melted_cormat)
+```
+
+```{r}
+library(ggplot2)
+ggplot(data = melted_cormat, aes(Var2, Var1, fill = value))+
+ geom_tile(color = "white")+
+ scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+   midpoint = 0, limit = c(-1,1), space = "Lab",
+   name="Pearson\nCorrelation") +
+  theme_minimal()+ 
+ theme(axis.text.x = element_text(angle = 45, vjust = 1, 
+    size = 12, hjust = 1))+
+ coord_fixed()
+```
+
+```{r}
+merge(azf, rf)
+```
+
+```{r}
+cf = as.data.frame(cf)
+
+cf$Item= as.numeric(cf$Item)
+
+cf = as.matrix(cf)
+```
+
+```{r}
+tableau1 <-t(tableau)
+```
+
+```{r}
+cor(tableau1, method = "pearson")
+```
+
+
+```{r}
+# The mtcars dataset:
+cormat <- round(cor(tableau1),4)
+head(cormat)
+```
+
+```{r}
+library(reshape2)
+melted_cormat <- melt(cormat)
+head(melted_cormat)
+```
+
+```{r}
+library(ggplot2)
+ggplot(data = melted_cormat, aes(Var2, Var1, fill = value))+
+ geom_tile(color = "white")+
+ scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+   midpoint = 0, limit = c(-1,1), space = "Lab",
+   name="Pearson\nCorrelation") +
+  theme_minimal()+ 
+ theme(axis.text.x = element_text(angle = 45, vjust = 1, 
+    size = 12, hjust = 1))+
+ coord_fixed()
+```
+
+
+```{r}
+HY	= c(49.1, 44.33, 0.93, 1.32, 1.07) ; LY	= c(65.61, 27.71, 2.09, 1.57, 0.79)
+tablephyla <- data.frame(x = HY, y = LY) 
+# Renommer les colonnes
+# en reprenant l'exemple ci-dessus
+colnames(tablephyla) <- c("HY","LY")
+# Si le tableau s'appelle data, on peut renommer ses colonnes
+data <- colnames(c("nouveau titre","titre nouveau"))
+
+# en reprenant l'exemple ci-dessus
+rownames(tablephyla) <- c("bacteroidetes", "firmicutes", "proteobacteria","tenericutes", "saccharibacteria")
+```
+
+
+
+```{r}
+# The mtcars dataset:
+data <- as.matrix(tableau1)
+cc = cor(data, method = "pearson")
+
+# Default Heatmap
+heatmap(data)
+
+# Use 'scale' to normalize
+heatmap(data, scale="column")
+
+
+# No dendrogram nor reordering for neither column or row
+heatmap(data, Colv = NA, Rowv = NA, scale="column")
+```
+```{r}
+cc = cor(data, method = "pearson")
+corrplot(cc)
+```
+
+# Création d'une heatmap 
+```{r}
+HY	= c(49.1, 44.33, 0.93, 1.32, 1.07) ; LY	= c(65.61, 27.71, 2.09, 1.57, 0.79)
+table1 <- data.frame(x = HY, y = LY) 
+# Renommer les colonnes
+colnames(table1) <- c("HY","LY")
+rownames(table1) <- c("bacteroidetes", "firmicutes", "proteobacteria","tenericutes", "saccharibacteria")
+```
+
+```{r}
+NH3_N = c(6.75952, 7.392976, 23.016496, 13.104704, 13.137904) ; Acetate = c(30.90648, 33.802824, 22.575304, 59.918496, 60.070296)
+HM1 <- data.frame(x = NH3_N, y = Acetate) 
+# Renommer les colonnes
+colnames(HM1) <- c("NH3_N", "Acetate")
+# Renommer les lignes
+rownames(HM1) <-c("Bacteroidetes", "Firmicutes", "Proteobacteria", "Tenericutes","Saccharibacteria")
+```
+
+```{r}
+Propionate = c(11.77826, 12.882038, 22.924798, 22.834552, 22.892402) ; VFA = c(57.83767, 63.257821, 22.083241, 112.130084, 112.414159)
+HM2 <- data.frame(x = Propionate, y = VFA) 
+# Renommer les colonnes
+colnames(HM2) <- c("Propionate", "VFA")
+# Renommer les lignes
+rownames(HM2) <-c("Bacteroidetes", "Firmicutes", "Proteobacteria", "Tenericutes","Saccharibacteria")
+```
+
+```{r}
+Ratio = c(1.34376, 1.469688, 2.615448, 2.605152, 2.611752)
+HM3 <- data.frame(x = Ratio) 
+# Renommer les colonnes
+colnames(HM3) <- c("Ratio")
+# Renommer les lignes
+rownames(HM3) <-c("Bacteroidetes", "Firmicutes", "Proteobacteria", "Tenericutes","Saccharibacteria")
+```
+
+```{r}
+# en reprenant l'exemple ci-dessus
+HM <- cbind(HM1, HM2) # Les colonnes du tableau 2 s'ajoutent au tableau 1 pour donner le tableau 3
+HM <- cbind(HM, HM3)
+```
+
+
+```{r}
+# The mtcars dataset:
+dataHM <- as.matrix(HM)
+cc = cor(dataHM, method = "pearson")
+
+# Default Heatmap
+heatmap(dataHM)
+
+# Use 'scale' to normalize
+heatmap(dataHM, scale="column")
+
+
+# No dendrogram nor reordering for neither column or row
+heatmap(dataHM, Colv = NA, Rowv = NA, scale="column")
+```
+
+```{r}
+cc = cor(dataHM, method = "pearson")
+corrplot(cc,scale="column")
+```
+
+
+
+```{r}
+HY = c(49.1, 44.33, 0.93,	1.32, 1.07) ; LY = c(65.61, 27.71, 2.09, 1.57, 0.79)
+T_OTU <- data.frame(x = HY, y = LY) 
+# Renommer les colonnes
+colnames(T_OTU) <- c("HY", "LY")
+# Renommer les lignes
+rownames(T_OTU) <-c("Bacteroidetes", "Firmicutes", "Proteobacteria", "Tenericutes","Saccharibacteria")
+```
+
+
+```{r}
+library(corrplot)
+    D1=HM
+    D2=T_OTU
+    CorTest=cor(D1, y=D2, use = "everything", method = "pearson")
+    CorGraph=corrplot(CorTest, method = "square", col = colorRampPalette(c("blue","white","red"))(200), title = "Pearson's Correlation of High-Fat Sugar at 12 weeks", tl.cex = .75, tl.col = "Black",diag = TRUE, cl.ratio = 2.25)
+```
+
+
+```{r}
+library(ggcorrplot)
+png(file="CorrPlot1.png", height=10000, width=3000, res=600)
+ggcorrplot(CorTest, lab_size=.1)+
+theme(axis.text.y = element_text(size=6),
+      axis.text.x = element_text(size=6, angle=90))
+dev.off()
+```
+
+
+
+
+
+
+
+
