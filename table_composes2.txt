@@ -1,4 +1,4 @@
-Items LY HY		
+Items,LY,HY		
 NH3-N,7.99,13.28
 Acetate,62.38,60.72	
 Propionate,21.95,23.14	
