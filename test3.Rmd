@@ -228,10 +228,153 @@ theme(axis.text.y = element_text(size=6),
 dev.off()
 ```
 
+```{r}
+HY = c(29.14, 7.20, 7.69, 4.21, 0.47, 3.55, 4.41, 3.36, 2.67, 3.12, 2.00, 2.91, 1.87, 1.36, 1.93) ; LY = c(37.48, 4.12, 3.57, 5.96, 8.41, 3.44, 1.36, 2.21, 2.87, 2.00, 2.20, 1.18, 1.99, 1.55, 0.80)
+Table_ar_gen <- data.frame(x = HY, y = LY) 
+# Renommer les colonnes
+colnames(Table_ar_gen) <- c("HY", "LY")
+# Renommer les lignes
+rownames(Table_ar_gen) <-c("Prevotella_1", "Ruminococcaceae_NK4A214_group", "Succiniclasticum", "Prevotellaceae", "Prevotella_7", "Bacteroidales_S24_7_group", "Ruminococcus_2", "Bacteroidales_BS11", "Rikenellaceae_RC9_gut_group", "Christensenellaceae_R_7_group", "Prevotellaceae_UCG_003", "Lachnospiraceae_NK3A20_group", "Ruminococcaceae_UCG_014", "Prevotellaceae_UCG_001",
+ "Eubacterium_coprostanoligenes_group")
+```
+
+```{r}
+par(mar=c(5,20,3,2))
+barplot(t(Table_ar_gen),beside=T,ylim=c(0,50), xlim=c(0,40), xlab="Genre",axis.lty="solid",horiz=T, las=1, col=c("red","blue"), legend=TRUE, xpd = FALSE)
+```
+
+```{r}
+DIFF = c(-8.34,3.08,4.12,-1.75,-7.94,0.11,3.05,1.15,-0.2,1.12,-0.2,1.73,-0.12,-0.19,1.13) 
+diff<- data.frame(x = DIFF) 
+# Renommer les colonnes
+colnames(diff) <- c("DIFF")
+# Renommer les lignes
+rownames(diff) <-c("Prevotella_1", "Ruminococcaceae_NK4A214_group", "Succiniclasticum", "Prevotellaceae", "Prevotella_7", "Bacteroidales_S24_7_group", "Ruminococcus_2", "Bacteroidales_BS11", "Rikenellaceae_RC9_gut_group", "Christensenellaceae_R_7_group", "Prevotellaceae_UCG_003", "Lachnospiraceae_NK3A20_group", "Ruminococcaceae_UCG_014", "Prevotellaceae_UCG_001",
+ "Eubacterium_coprostanoligenes_group")
+```
+
+HY
+```{r}
+# load library
+library(ggplot2)
+ 
+# Create test data.
+data <- data.frame(
+  category=c("Prevotella_1", "Ruminococcaceae_NK4A214_group", "Succiniclasticum", "Prevotellaceae", "Prevotella_7", "Bacteroidales_S24_7_group", "Ruminococcus_2", "Bacteroidales_BS11", "Rikenellaceae_RC9_gut_group", "Christensenellaceae_R_7_group", "Prevotellaceae_UCG_003", "Lachnospiraceae_NK3A20_group", "Ruminococcaceae_UCG_014", "Prevotellaceae_UCG_001",
+ "Eubacterium_coprostanoligenes_group"),
+  count=c(29.14, 7.20, 7.69, 4.21, 0.47, 3.55, 4.41, 3.36, 2.67, 3.12, 2.00, 2.91, 1.87, 1.36, 1.93), 60, 30)
+
+ 
+# Compute percentages
+data$fraction = data$count / sum(data$count)
+
+# Compute the cumulative percentages (top of each rectangle)
+data$ymax = cumsum(data$fraction)
+
+# Compute the bottom of each rectangle
+data$ymin = c(0, head(data$ymax, n=-1))
+ 
+# Make the plot
+ggplot(data, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3, fill=category)) +
+     geom_rect() +
+     coord_polar(theta="y") + # Try to remove that to understand how the chart is built initially
+     xlim(c(2, 4)) # Try to remove that to see how to make a pie chart
+```
+```{r}
+# Load ggplot2
+library(ggplot2)
+
+# Create Data
+data <- data.frame(
+  category=c("Prevotella_1", "Ruminococcaceae_NK4A214_group", "Succiniclasticum", "Prevotellaceae", "Prevotella_7", "Bacteroidales_S24_7_group", "Ruminococcus_2", "Bacteroidales_BS11", "Rikenellaceae_RC9_gut_group", "Christensenellaceae_R_7_group", "Prevotellaceae_UCG_003", "Lachnospiraceae_NK3A20_group", "Ruminococcaceae_UCG_014", "Prevotellaceae_UCG_001",
+ "Eubacterium_coprostanoligenes_group"),
+  count=c(29.14, 7.20, 7.69, 4.21, 0.47, 3.55, 4.41, 3.36, 2.67, 3.12, 2.00, 2.91, 1.87, 1.36, 1.93), 60, 30)
+
+# Basic piechart
+ggplot(data, aes(x="", y=count, fill=category)) +
+  geom_bar(stat="identity", width=1, color="white") +
+  coord_polar("y", start=0) +
+  
+  theme_void() # remove background, grid, numeric labels
+```
+
+```{r}
+# Load ggplot2
+library(ggplot2)
+
+# Create Data
+dataLY <- data.frame(
+  category=c("Prevotella_1", "Ruminococcaceae_NK4A214_group", "Succiniclasticum", "Prevotellaceae", "Prevotella_7", "Bacteroidales_S24_7_group", "Ruminococcus_2", "Bacteroidales_BS11", "Rikenellaceae_RC9_gut_group", "Christensenellaceae_R_7_group", "Prevotellaceae_UCG_003", "Lachnospiraceae_NK3A20_group", "Ruminococcaceae_UCG_014", "Prevotellaceae_UCG_001",
+ "Eubacterium_coprostanoligenes_group"),
+  count=c(37.48, 4.12, 3.57, 5.96, 8.41, 3.44, 1.36, 2.21, 2.87, 2.00, 2.20, 1.18, 1.99, 1.55, 0.80))
+
+# Basic piechart
+ggplot(dataLY, aes(x="", y=count, fill=category)) +
+  geom_bar(stat="identity", width=1, color="white") +
+  coord_polar("y", start=0) +
+  
+  theme_void() # remove background, grid, numeric labels
+```
+
+#phylum 
+
+```{r}
+# Load ggplot2
+library(ggplot2)
+
+# Create Data
+dataHY_P <- data.frame(
+  category=c("Bacteroidetes", "Firmicutes", "Proteobacteria", "Tenericutes","Saccharibacteria"),
+  count=c(49.1, 44.33, 0.93,	1.32, 1.07))
+
+# Basic piechart
+ggplot(dataHY_P, aes(x="", y=count, fill=category)) +
+  geom_bar(stat="identity", width=1, color="white") +
+  coord_polar("y", start=0) +
+  
+  theme_void() # remove background, grid, numeric labels
+```
+```{r}
+# Load ggplot2
+library(ggplot2)
+
+# Create Data
+dataLY_P <- data.frame(
+  category=c("Bacteroidetes", "Firmicutes", "Proteobacteria", "Tenericutes","Saccharibacteria"),
+  count=c(65.61, 27.71, 2.09, 1.57, 0.79))
+
+# Basic piechart
+ggplot(dataLY_P, aes(x="", y=count, fill=category)) +
+  geom_bar(stat="identity", width=1, color="white") +
+  coord_polar("y", start=0) +
+  
+  theme_void() # remove background, grid, numeric labels
+```
+```{r}
+# Libraries
+library(ggraph)
+library(igraph)
+library(tidyverse)
+ 
+# We need a data frame giving a hierarchical structure. Let's consider the flare dataset:
+edges <- flare$edges
+ 
+# Usually we associate another dataset that give information about each node of the dataset:
+vertices <- flare$vertices
+ 
+# Then we have to make a 'graph' object using the igraph library:
+mygraph <- graph_from_data_frame( edges, vertices=vertices )
+ 
+# Make the plot
+ggraph(mygraph, layout = 'circlepack') + 
+  geom_node_circle() +
+  theme_void()
+```
 
 
-
-
-
-
+```{r}
+library(gplots)
+plotmeans(len ~ dose, data = DIFF, frame = FALSE,
+          mean.labels = TRUE, connect = FALSE)
+```
 
